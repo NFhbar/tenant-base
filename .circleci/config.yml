@@ -27,7 +27,7 @@ jobs:
             name: Run pylint
             command: |
               . venv/bin/activate
-              pylint lambda_function.py
+              pylint main.py
 
         - run:
             name: Build and test
