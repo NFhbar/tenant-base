@@ -1,5 +1,9 @@
 # Tenant Base Backend
 
+[![CircleCI](https://circleci.com/gh/NFhbar/tenant-base.svg?style=svg)](https://circleci.com/gh/NFhbar/tenant-base)
+
+[![Coverage Status](https://coveralls.io/repos/github/NFhbar/tenant-base/badge.svg?branch=issue_1)](https://coveralls.io/github/NFhbar/tenant-base?branch=issue_1)
+
 Simple key-value storage which implements a small subset of the [memcached protocol](https://memcached.org/).
 Data is persisted through [SQLite](https://www.sqlite.org/index.html).
 
