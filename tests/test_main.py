@@ -1,19 +1,27 @@
+# -*- coding: utf-8 -*-
 """test file for correct execution"""
+from os import system
 import logging
 import main
-LOG = logging.getLogger()
-LOG.setLevel(logging.INFO)
+log = logging.getLogger()
+log.setLevel(logging.INFO)
 
 class TestClass:
 
     @classmethod
     def setup_class(cls):
-        LOG.info('Setup Tests')
+        log.info('Setup Tests')
+        cls.mock_database = 'mock.sqlite'
 
     @classmethod
     def teardown_class(cls):
-        LOG.info('Tear Down Tests')
+        log.info('Stopping memcached server')
+        exit_code = system('killall memcached')
+        log.info(exit_code)
 
-    def test_lambda_handler_btc(self):
+    def test_main_serve_argument(self):
         """test correct execution"""
-        main.main()
+        main.main(['-s', self.mock_database])
+
+if __name__ == '__main__':
+    pytest.main()
