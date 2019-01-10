@@ -11,8 +11,13 @@ jobs:
             keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
             - v1-dependencies-
+
         - run:
-            name: Install dependencies
+            name: Install memcached
+            command: sudo apt-get install memcached
+
+        - run:
+            name: Install requirements
             command: |
               python3 -m venv venv
               . venv/bin/activate
