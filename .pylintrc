@@ -1,4 +1,4 @@
 [MESSAGES CONTROL]
 disable=
-    unused-import,
-    broad-except
+    redefined-builtin,
+    too-many-branches
