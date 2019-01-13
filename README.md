@@ -11,6 +11,7 @@ Data is persisted through [SQLite](https://www.sqlite.org/index.html).
 - [Pip](https://pypi.org/project/pip/)
 - [Memcached](https://memcached.org/)
 - [virtualenv](https://virtualenv.pypa.io/en/latest/) - optional
+- [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/install.html) - optional
 
 ## Installation
 In your local machine, clone this repo then create a new `virtualenv`:

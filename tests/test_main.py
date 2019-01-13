@@ -2,7 +2,6 @@
 """test file for correct execution"""
 from os import system
 import logging
-import mock
 import main
 import helpers
 from pymemcache.client import Client
@@ -30,6 +29,16 @@ class TestClass:
         cls.client.delete('testkey1')
         cls.client.delete('testkey2')
 
+    def test_default_values(self):
+        """test empty default user_input"""
+        result = main.set_value()
+        assert result == []
+
+        result = main.get_value()
+        assert result == None
+
+        result = main.delete_value()
+        assert result == False
 
     def test_main_exit(self, monkeypatch):
         """test correct execution for exit option"""
@@ -52,7 +61,12 @@ class TestClass:
 
     def test_main_show(self):
         """test correct execution of -show flag"""
+        self.db_conn['testkey3'] = 'testvalue3'
         main.main(['-sh', self.mock_database])
+
+    def test_main_wrong_option(self):
+        """test correct execution for no flag"""
+        result = main.main([])
 
     def test_value_operations(self):
         """test set_value function for different cases"""
@@ -64,9 +78,11 @@ class TestClass:
         memcahed_expected = self.client.get('testkey1')
         assert result[1] == memcahed_expected.decode('utf-8')
 
-
         db_expected = self.db_conn['testkey1']
         assert result[1] == db_expected
+
+        result = main.get_value(['get','testkey1'], self.client, self.mock_database)
+        assert result == memcahed_expected.decode('utf-8')
 
         # Case 2a - Get a value that is only in the DB
         user_input = ['get', 'testkey2']
